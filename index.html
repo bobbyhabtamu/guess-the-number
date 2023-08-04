@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Guessing Game</title>
+</head>
+<body>
 
+  <h1>Number Guessing Game</h1>
+  <p>Welcome to the number guessing game! The computer will pick a random number between 1 and 10. Your goal is to guess the number in as few attempts as possible.</p>
+
+  <p>To play:</p>
+    
+  <p>1.Enter your guess in the text box. Your guess must be a number between 1 and 10.</p>
+  <p>2.Click the "Guess" button to submit your guess.</p>
+  <p>3.The computer will tell you if your guess is too high, too low, or correct!</p>
+  <p>4.If your guess is incorrect, try again until you guess the number.</p>
+  <p>5.Once you guess correctly, the game will display how many guesses it took you and a congratulatory message.</p>
+  <p>6.Refresh the page to play again and see if you can beat your previous number of guesses!</p>
+  <p>7.Good luck! See how quickly you can guess the computer's random number.</p>
+  <label for="guessInput">Enter a guess between 1 and 10: </label> 
+  <input type="number" id="guessInput" />
+  
+  <button id="guessButton">Guess</button>
+  
+  <div id="result"></div>
+
+  <script>
+
+    let result = document.getElementById("result");
+
+    document.getElementById("guessButton").onclick = function(){
+      
+      // Validate input
+      let guess = document.getElementById("guessInput").value;
+      if(guess < 1 || guess > 10) {
+        result.innerText = "Please enter a number between 1 and 10";
+        return;
+      }
+
+      // Game logic
+      let num = Math.floor(Math.random() * 10) + 1; 
+      let guessCount = 0;
+      guessCount++;
+
+      if(guess == num) {
+        result.innerText = getCongratsMessage(guessCount);
+      } else if(guess < num) {
+        result.innerText = "Higher!";
+      } else {
+        result.innerText = "Lower!";
+      }
+    }
+
+    function getCongratsMessage(count) {
+      if(count === 1) {
+        return `Congratulations! You guessed the correct number, which was ${num} and it took you only one guess.`;
+      } else { 
+        return `Congratulations! You guessed the correct number, which was ${num} and it took you ${count} guesses.`;
+      }
+    }
+
+  </script>
+
+</body>
+</html>
